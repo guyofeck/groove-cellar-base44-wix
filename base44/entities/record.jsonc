@@ -1,0 +1,57 @@
+{
+  "name": "Record",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Album / record title"
+    },
+    "artist": {
+      "type": "string",
+      "description": "Artist or band name"
+    },
+    "genre": {
+      "type": "string",
+      "enum": ["Rock", "Jazz", "Hip-Hop", "Electronic", "Soul", "Classical", "Pop", "Folk"],
+      "description": "Music genre"
+    },
+    "year": {
+      "type": "integer",
+      "description": "Release year",
+      "minimum": 1900,
+      "maximum": 2100
+    },
+    "price": {
+      "type": "number",
+      "description": "Price in USD",
+      "minimum": 0
+    },
+    "cover_image_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL of the album cover image"
+    },
+    "description": {
+      "type": "string",
+      "description": "Short description / liner notes"
+    },
+    "stock": {
+      "type": "integer",
+      "description": "Units available in stock",
+      "default": 0,
+      "minimum": 0
+    },
+    "featured": {
+      "type": "boolean",
+      "description": "Whether to highlight this record on the storefront",
+      "default": false
+    }
+  },
+  "required": ["title", "artist", "price"],
+  "rls": {
+    "create": { "user_condition": { "role": "admin" } },
+    "read": true,
+    "update": { "user_condition": { "role": "admin" } },
+    "delete": { "user_condition": { "role": "admin" } }
+  }
+}
