@@ -225,13 +225,11 @@ Deno.serve(async (req) => {
     const checkoutId = await createCheckout(token, items, email, sync.memberId);
     console.log(`[wix-bridge] checkoutId=${checkoutId}`);
 
-    // Best-effort member upgrade for sticky login. Never allowed to block or fail checkout.
-    // NOTE: temporarily forced to visitor-only while we validate the base checkout redirect;
-    // flip FORCE_VISITOR to false to re-enable member-context (sticky) checkout.
-    const FORCE_VISITOR = true;
+    // Best-effort member upgrade for sticky login. Never allowed to block or fail checkout:
+    // if the member mint fails or times out (8s), we fall back to the visitor redirect.
     step = "mint-member-token";
     let authToken = visitorToken;
-    if (!FORCE_VISITOR && sync.sessionToken) {
+    if (sync.sessionToken) {
       try {
         const memberToken = await Promise.race([
           mintMemberToken(visitorToken, sync.sessionToken, redirectUri),
