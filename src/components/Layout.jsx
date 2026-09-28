@@ -29,21 +29,33 @@ export default function Layout() {
 
   return (
     <div className="min-h-screen bg-neutral-950 text-neutral-100 flex flex-col">
-      <header className="sticky top-0 z-30 border-b border-neutral-800 bg-neutral-950/80 backdrop-blur">
+      <header className="sticky top-0 z-30 border-b border-violet-500/20 bg-neutral-950/90 backdrop-blur-md shadow-[0_1px_20px_-4px_rgba(124,92,255,0.35)]">
         <div className="max-w-6xl mx-auto px-5 h-16 flex items-center justify-between gap-4">
-          <Link to="/" className="flex items-center gap-2 group">
-            <Disc3 className="w-7 h-7 text-amber-400 group-hover:rotate-180 transition-transform duration-700" />
-            <span className="font-bold text-lg tracking-tight">Groove Cellar</span>
+          <Link to="/" className="flex items-center gap-2.5 group">
+            <span className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-gradient-to-br from-violet-500/20 to-amber-400/10 ring-1 ring-violet-400/30">
+              <Disc3 className="w-5 h-5 text-amber-400 group-hover:rotate-180 transition-transform duration-700" />
+            </span>
+            <span className="font-bold text-lg tracking-tight uppercase">
+              Groove <span className="text-violet-400">Cellar</span>
+            </span>
           </Link>
 
-          <nav className="hidden sm:flex items-center gap-6 text-sm text-neutral-300">
-            <NavLink to="/" className={({ isActive }) => (isActive ? "text-amber-400" : "hover:text-white")} end>
+          <nav className="hidden sm:flex items-center gap-6 text-sm font-medium uppercase tracking-wide text-neutral-400">
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                `relative pb-1 transition-colors ${isActive ? "text-white after:absolute after:left-0 after:right-0 after:-bottom-[1px] after:h-[2px] after:bg-violet-400" : "hover:text-white"}`
+              }
+              end
+            >
               Shop
             </NavLink>
             {user && (
               <NavLink
                 to="/account"
-                className={({ isActive }) => (isActive ? "text-amber-400" : "hover:text-white")}
+                className={({ isActive }) =>
+                  `relative pb-1 transition-colors ${isActive ? "text-white after:absolute after:left-0 after:right-0 after:-bottom-[1px] after:h-[2px] after:bg-violet-400" : "hover:text-white"}`
+                }
               >
                 My Orders
               </NavLink>
@@ -86,7 +98,7 @@ export default function Layout() {
             ) : (
               <Link
                 to="/login"
-                className="inline-flex items-center gap-2 px-4 h-10 rounded-full bg-amber-400 text-neutral-950 text-sm font-semibold hover:bg-amber-300 transition-colors"
+                className="inline-flex items-center gap-2 px-4 h-10 rounded-full bg-violet-500 text-white text-sm font-semibold hover:bg-violet-400 transition-colors"
               >
                 <User className="w-4 h-4" />
                 Sign in
