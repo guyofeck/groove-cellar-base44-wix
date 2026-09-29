@@ -91,7 +91,7 @@ export default function Shop() {
         <div className="max-w-6xl mx-auto px-5 py-16 sm:py-24">
           <p className="text-amber-400 font-medium tracking-wide uppercase text-sm">Now spinning</p>
           <h1 className="mt-3 text-4xl sm:text-5xl font-bold tracking-tight max-w-2xl">
-            Hand-picked vinyl for people who still drop the needle.
+            Vinyl so good, your Spotify will get jealous.
           </h1>
           <p className="mt-4 text-neutral-400 max-w-xl">
             Rare pressings, reissues, and crate-digging finds — shipped straight to your turntable.
